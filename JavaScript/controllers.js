@@ -3,15 +3,15 @@
  */
 var portAppControllers = angular.module( 'portApp.Controllers', ['portApp.Factories'] );
 
-portAppControllers.controller( 'IndexController', ['$scope', '$location', 'UserFactory', function( $scope, $location, UserFactory ){
-    $scope.isActive = function( route ){
-        return route === $location.path();
-    }
-    $scope.logContext = UserFactory.logContext;
+portAppControllers.controller( 'IndexController', ['$scope', '$location', 'IndexFactory', function( $scope, $location, IndexFactory ){
+    $scope.indexContext = IndexFactory.context;
 
-    $scope.logOut = function(){
-        UserFactory.logOut();
-    }
+    $scope.toggleIndexFlag = function(){
+        var flag = $scope.indexContext.flag;
+        $scope.indexContext.flag = !flag;
+        if( flag ) $scope.indexContext.source = "http://ozarker.org/wp-content/uploads/2013/12/ilb.jpg";
+        else $scope.indexContext.source = "http://www.electrical-online.com/wp-content/uploads/2010/11/light-on.jpg";
+    };
 }]);
 
 portAppControllers.controller( 'MainController', ['$scope', function( $scope ){
