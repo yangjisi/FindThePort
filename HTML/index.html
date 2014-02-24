@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html data-ng-app="frontApp">
+<head>
+    <meta charset="utf-8" />
+    <title> Find The Port </title>
+
+    <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css"/>
+
+    <script src="../javascript/lib/angular.js"></script>
+    <script src="../javascript/lib/angular-resource.js"></script>
+    <script src="../javascript/lib/angular-route.js"></script>
+
+    <script src="../javascript/main.js"></script>
+    <script src="../javascript/router.js"></script>
+
+    <script src="../javascript/IndexController.js"></script>
+    <script src="../javascript/MainController.js"></script>
+    <script src="../javascript/TreeController.js"></script>
+    <script src="../javascript/LoginController.js"></script>
+    <script src="../javascript/DetailController.js"></script>
+    <script src="../javascript/LibraryController.js"></script>
+    <script src="../javascript/BookListController.js"></script>
+
+    <script src="../javascript/treeFactory.js"></script>
+    <script src="../javascript/UserFactory.js"></script>
+    <script src="../javascript/BookFactory.js"></script>
+    <script src="../javascript/LibraryFactory.js"></script>
+
+    <!--<script src="../javascript/lib/jquery-1.10.2.min.js"></script>-->
+</head>
+
+<body data-ng-controller="IndexController">
+
+<header>
+    <div>
+        <h1><a href="#/main" title="go to main page">Life &amp; Books</a></h1>
+
+        <div>
+            <fieldset>
+                <legend>Search Books :</legend>
+                <label for="bookSearch">Keyword : </label><input type="text" ng-model="searchText" id="bookSearch" placeholder="input Keyword" accesskey="s" />
+                <button>Search</button>
+            </fieldset>
+                <span data-ng-hide="logContext.flag">
+                    <a href="#/login" title="Membership login">Membership</a>
+                </span>
+
+            <!-- After login -->
+                <span data-ng-show="logContext.flag">
+                    <a title="Writing">Writing</a>
+                    <a href="#/library" title="go to User's Library">{{logContext.user.name}}'s Library</a>
+                    <a data-ng-click="logOut()" href="#/main" title="sign out">Sign Out</a>
+                </span>
+            <!--// After login -->
+
+            <a href="#/tree" title="go to Tree">Tree</a>
+        </div>
+    </div>
+</header>
+
+<div data-ng-view></div>
+
+</body>
+</html>
